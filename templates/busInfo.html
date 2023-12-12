@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<style>
+		* {
+			font-family: sans-serif;
+		}
+		.heading{
+			padding: 8px;
+			margin: 15px 0;
+			margin-left: 5%;
+			margin-right: 5%;
+			font-family: 'Poppins', sans-serif;
+			background-color: #980000;
+			color: #ffffff;
+			font-size: 15px;
+			font-weight: bold;
+			text-align: center;
+			border-radius: 5px 5px 5px 5px;
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none; 
+			-moz-user-select: none;
+			-ms-user-select: none; 
+            user-select: none;
+			-webkit-tap-highlight-color: transparent;
+		}
+		.heading span{
+			font-size: 20px;
+			line-height: 1.8;
+			font: bolder;
+		}
+		.button{
+			background-color: #006898;
+			border: none;
+			color: white;
+			padding: 7px 13px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 4px;
+			cursor: pointer;
+			border-radius: 2px;
+		}
+		.instructions{  
+			background-color: #006898;
+			border: none;
+			color: white;
+			padding: 1px 5px;
+			font-family: 'Poppins', sans-serif;
+			text-align: center;
+			font-size: 10px;
+			margin: 5px 5px;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none; 
+			-moz-user-select: none;
+			-ms-user-select: none; 
+            user-select: none;
+			-webkit-tap-highlight-color: transparent;
+		}
+		.button1 {
+				background-color: #006898;
+				color: white;
+				padding: 8px 23px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 5px 6px;
+				cursor: pointer;
+				border-radius: 2px;
+				border-color:bisque;
+				-webkit-tap-highlight-color: transparent;
+		}
+		@media(max-width: 500px){
+			body {
+				padding: 25px;
+				background-color: white;
+				color: black;
+				font-size: 25px;
+			}
+			.heading{
+				padding: 8px;
+				margin-left: 3%;
+				margin-right: 3%;
+				font-family: 'Poppins', sans-serif;
+				background-color: #980000;
+				color: #ffffff;
+				font-size: 15px;
+				font-weight: bold;
+				text-align: center;
+				border-radius: 5px 5px 5px 5px;
+				box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none; 
+				-moz-user-select: none;
+				-ms-user-select: none; 
+				user-select: none;
+				-webkit-tap-highlight-color: transparent;
+			}
+			.button {
+				background-color: #006898;
+				border: none;
+				color: white;
+				padding: 7px 13px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 4px 4px;
+				cursor: pointer;
+				border-radius: 2px;
+				-webkit-tap-highlight-color: transparent;
+			}
+			.button1 {
+				background-color: #006898;
+				color: white;
+				padding: 8px 23px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 5px 6px;
+				cursor: pointer;
+				border-radius: 2px;
+				border-color:bisque;
+				-webkit-tap-highlight-color: transparent;
+			}
+			.image{
+				margin-top: 5%;
+				align-self: center;
+				width: 310px;
+				height: 400px;
+				object-fit: none;
+				border: 5px solid black;
+				-webkit-filter: grayscale(100%);   
+				filter: grayscale(100%);
+				-webkit-touch-callout: none;
+				-webkit-tap-highlight-color: transparent;
+			}
+		}
+		.dark-mode {
+			background-color: black;
+			color: white;
+		}
+		.switch {
+			position: relative;
+			float: right;
+			width: 60px;
+			height: 34px;
+			-webkit-tap-highlight-color: transparent;
+		}
+		.switch input {
+			opacity: 0;
+			width: 0;
+			height: 0;
+		}
+		.slider {
+			position: absolute;
+			cursor: pointer;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: #ccc;
+			-webkit-transition: .4s;
+			transition: .4s;
+			-webkit-tap-highlight-color: transparent;
+		}
+		.slider:before {
+			position: absolute;
+			content: "";
+			height: 26px;
+			width: 26px;
+			left: 4px;
+			bottom: 4px;
+			background-color: white;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+		input:checked+.slider {
+			background-color: #242424;
+		}
+		input:focus+.slider {
+			box-shadow: 0 0 1px #262729;
+		}
+
+		input:checked+.slider:before {
+			-webkit-transform: translateX(26px);
+			-ms-transform: translateX(26px);
+			transform: translateX(26px);
+		}
+
+		.slider.round {
+			border-radius: 34px;
+		}
+
+		.slider.round:before {
+			border-radius: 50%;
+		}
+		.image{
+			margin-top: 5%;
+			align-self: center;
+			width: 310px;
+			height: 400px;
+			object-fit: none;
+			border: 5px solid black;
+			-webkit-filter: grayscale(100%);   
+			filter: grayscale(100%);
+			-webkit-touch-callout: none;
+			-webkit-tap-highlight-color: transparent;
+		}
+	</style>
+		<button class="button" onclick="location.href= '/'">&LessLess;</button>
+		<label class="switch"><input id="def" onclick="darktheme()" type="checkbox" >
+			<span class="slider round"></span>
+			</label>
+		<div id="search">
+			<style>
+				input[type=text] {
+					width: 140px;
+					box-sizing: border-box;
+					border: 2px solid rgb(0, 189, 196);
+					border-radius: 4px;
+					font-size: 16px;
+					background-color: white;
+					background-image: url("{{url_for('static', filename='searchicon.png')}}");
+					background-size: 15px;
+					background-position: 10px 13px;
+					background-repeat: no-repeat;
+					padding: 12px 20px 12px 40px;
+					-webkit-transition: width 0.2s ease-in-out;
+					transition: width 0.2s ease-in-out;
+					margin: 5px 5px;
+					-webkit-tap-highlight-color: transparent;
+				}
+				input[type=text]:focus {
+					width: 90%;
+				}
+				.searchWrapper{
+					position: relative;
+					-webkit-tap-highlight-color: transparent;
+				}
+				.searchWrapper::after {
+					content: '🔍';
+					position: absolute;
+					top: 7px;
+					right: 15px;
+					-webkit-tap-highlight-color: transparent;
+				}
+			</style>
+			<form id='busForm' >
+				<input type="text" name="start" id="fromInput" placeholder="From" value=''  /><br>
+				<input type="text" name="end" id="toInput" placeholder="To" value=''/>
+				<br><input type="submit" value="Get Bus Info" class= "button1">
+			</form>
+			
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+			<script type="text/javascript">
+				$(document).ready(function(){
+					$('#myInput input').keydown(function(e){
+						if($(':input:eq(' + ($(':input').index(this) + 1) + ')').attr('type')=='submit'){
+							return true;
+						}
+						$(':input:eq(' + ($(':input').index(this) + 1) + ')').focus();
+						return false;
+					});
+				});
+			</script>
+		</div>
+		
+		<div id='wrap'>
+			<img id='newImage' src="{{url_for('static', filename='result.png')}}" class = "image" />
+		</div>
+		
+		<div class = "heading">
+			<p>Results may take 5-10 Seconds to appear!</p>
+		</div>
+
+		<div class = "heading">
+			<p>This section of app is still<br>
+			<span>UNDER DEVELOPMENT</span><br>
+			Unexpected errors can be encountered!</p>
+		</div>
+		<script>
+			var setTheme = localStorage.getItem('theme');
+			console.log('theme:', setTheme);
+			var element = document.body;
+			var def = document.getElementById("def");
+			user(setTheme);
+	
+			function user(info) {
+				
+				if (info == "on") {
+					element.classList.toggle("dark-mode");
+					def.checked=true;
+				}
+				else{
+					def.checked=false;
+				}
+			}
+			function darktheme() {
+				element.classList.toggle("dark-mode");
+				var val = localStorage.getItem('theme');
+				if (val == "on") {
+					localStorage.setItem('theme', "off");
+				}
+				else {
+					localStorage.setItem('theme', "on");
+				}
+				console.log('theme:', val);
+			}
+
+			var form = document.getElementById('busForm')
+			form.addEventListener( "submit", function ( event ) {
+				event.preventDefault();
+				const formData = new FormData(form)
+				var url = "/busInfo/?start=" + formData.get('start') + "&end=" + formData.get('end');
+				let request = new XMLHttpRequest();
+				request.open('POST', url, true);
+				request.send()
+				request.onload = function () {
+					if (this.status >= 200 && this.status < 400) {
+						window.location.reload()
+					}
+				}
+  			})
+		</script>
+	</body>
+</html>

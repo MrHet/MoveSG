@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content=" Click to select your begin and destination stations to plot the route.">
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+	<link rel='stylesheet' type="text/css" href='/static/autoComplete.css'>
+</head>
+
+<body>
+	<style>
+		body {
+
+			padding-left: 10px;
+			padding-right: 10px;
+			padding-top: 2px;
+			background-color: white;
+			color: black;
+			font-size: 25px;
+		}
+
+		.pagecontainer {
+			max-width: 100vw;
+			-webkit-tap-highlight-color: transparent;
+		}
+
+		@media only screen and (min-width: 786px) {
+			.pagecontainer {
+				max-width: 786px;
+				margin:auto;
+				-webkit-tap-highlight-color: transparent;
+			}
+		}
+
+		.map {
+			width: 100%;
+			height: 500px;
+			-webkit-tap-highlight-color: transparent;
+		}
+
+		.autoComplete_wrapper.autoComplete_wrapper>ul>li:hover {
+			background-color: rgba(0, 189, 196, 0.3);
+			-webkit-tap-highlight-color: transparent;
+		}
+
+
+		.instructions {
+			background-color: #006898;
+			border: none;
+			color: white;
+			padding: 5px 5px;
+			font-family: 'Poppins', sans-serif;
+			text-align: center;
+			font-size: 12px;
+			margin: 5px 5px;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			-webkit-tap-highlight-color: transparent;
+		}
+
+		.disclaimer {
+			border: none;
+			background-color: rgb(190, 0, 0);
+			color: white;
+			padding: 5px 5px;
+			font-family: 'Poppins', sans-serif;
+			text-align: center;
+			font-size: 10px;
+			margin: 7px 5px;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			-webkit-tap-highlight-color: transparent;
+		}
+
+		.button {
+			background-color: #006898;
+			border: none;
+			color: white;
+			padding: 7px 13px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 4px;
+			cursor: pointer;
+			border-radius: 2px;
+			-webkit-tap-highlight-color: transparent;
+		}
+
+		.dark-mode {
+			background-color: black;
+			color: white;
+		}
+
+		.switch {
+			position: relative;
+			float: right;
+			width: 60px;
+			height: 34px;
+			-webkit-tap-highlight-color: transparent;
+		}
+
+		.switch input {
+			opacity: 0;
+			width: 0;
+			height: 0;
+			-webkit-tap-highlight-color: transparent;
+		}
+
+		.slider {
+			position: absolute;
+			cursor: pointer;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: #ccc;
+			-webkit-transition: .4s;
+			transition: .4s;
+			-webkit-tap-highlight-color: transparent;
+		}
+
+		.slider:before {
+			position: absolute;
+			content: "";
+			height: 26px;
+			width: 26px;
+			left: 4px;
+			bottom: 4px;
+			background-color: white;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+
+		input:checked+.slider {
+			background-color: #242424;
+		}
+
+		input:focus+.slider {
+			box-shadow: 0 0 1px #262729;
+		}
+
+		input:checked+.slider:before {
+			-webkit-transform: translateX(26px);
+			-ms-transform: translateX(26px);
+			transform: translateX(26px);
+		}
+
+		.slider.round {
+			border-radius: 34px;
+		}
+
+		.slider.round:before {
+			border-radius: 50%;
+		}
+
+		@media(max-width: 500px) {
+			body {
+				padding-left: 15px;
+				padding-right: 15px;
+			    padding-top: 2px;
+				background-color: white;
+				color: black;
+				font-size: 25px;
+				-webkit-tap-highlight-color: transparent;
+			}
+
+			.instructions {
+				background-color: #006898;
+				border: none;
+				color: white;
+				padding: 2px 2px;
+				font-family: 'Poppins', sans-serif;
+				text-align: center;
+				font-size: 12px;
+				margin: 2px 2px;
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+				-webkit-tap-highlight-color: transparent;
+			}
+
+			.disclaimer {
+				border: none;
+				background-color: rgb(190, 0, 0);
+				color: white;
+				padding: 5px 5px;
+				font-family: 'Poppins', sans-serif;
+				text-align: center;
+				font-size: 10px;
+				margin: 7px 5px;
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+				-webkit-tap-highlight-color: transparent;
+			}
+
+			.button {
+				background-color: #006898;
+				border: none;
+				color: white;
+				padding: 7px 13px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 4px 2px;
+				cursor: pointer;
+				border-radius: 2px;
+				-webkit-tap-highlight-color: transparent;
+			}
+		}
+
+		.button1 {
+			background-color: #006898;
+			color: white;
+			padding: 5px 15px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 2px 5px;
+			cursor: pointer;
+			border-radius: 2px;
+			border-color: bisque;
+			-webkit-tap-highlight-color: transparent;
+		}
+	</style>
+	<div class='pagecontainer'>
+		<button class="button" onclick="location.href= '/'">&LessLess;</button>
+		<label class="switch"><input id="def" onclick="darktheme()" type="checkbox">
+			<span class="slider round"></span>
+		</label>
+		<div id="from">
+			<style>
+				#searchForm {
+					display: flex;
+					flex-wrap: wrap;
+				}
+
+				input[type=text] {
+					min-width: 140px;
+					max-width: 154px;
+					box-sizing: border-box;
+					border: 2px solid rgb(0, 189, 196);
+					border-radius: 4px;
+					font-size: 16px;
+					background-color: white;
+					background-image: url("{{url_for('static', filename='searchicon.png')}}");
+					background-size: 15px;
+					background-position: 10px 13px;
+					background-repeat: no-repeat;
+					padding: 12px 20px 12px 40px;
+					-webkit-transition: width 0.2s ease-in-out;
+					transition: width 0.2s ease-in-out;
+					margin: 5px 5px;
+					-webkit-tap-highlight-color: transparent;
+				}
+
+				/* input[type=text]:focus {
+					width: 50%;
+				} */
+
+				.searchWrapper {
+					position: relative;
+					-webkit-tap-highlight-color: transparent;
+				}
+
+				.searchWrapper::after {
+					content: '🔍';
+					position: absolute;
+					top: 7px;
+					right: 15px;
+					-webkit-tap-highlight-color: transparent;
+				}
+			</style>
+			<form id='searchForm'>
+				<input type="text" name="start" id="fromInput" placeholder="From" value='' /><br>
+				<input type="text" name="end" id="toInput" placeholder="To" value='' /><br>
+				<input type="submit" value="Get Route" class="button1">
+			</form>
+		</div>
+		<div class="map">
+			{% include 'stn.svg' %}
+		</div>
+		<p id="path_id"></p>
+		<p id="bfs"></p>
+		<script src={{ url_for('static', filename='front-end.js' ) }}></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.6/dist/autoComplete.min.js"></script>
+
+
+		<script src={{ url_for('static', filename='stnName.js' ) }}></script>
+		<script>
+			const autoCompleteFrom = new autoComplete(
+				{
+					selector: "#fromInput",
+					data: {
+						src: Object.keys(stations),
+						cache: true,
+					},
+					resultsList: {
+						element: (list, data) => {
+							if (!data.results.length) {
+								const message = document.createElement("div");
+								message.setAttribute("class", "no_result");
+								message.innerHTML = `<span>"${data.query}" Not Found!</span>`;
+								list.prepend(message);
+							}
+						},
+						noResults: true,
+					},
+					events: {
+						input: {
+							selection: (event) => {
+								const selection = event.detail.selection.value;
+								autoCompleteFrom.input.value = selection;
+							}
+						}
+					}
+				}
+			);
+		</script>
+		<script>
+			const autoCompleteTo = new autoComplete(
+				{
+					selector: "#toInput",
+					data: {
+						src: Object.keys(stations),
+						cache: true,
+					},
+					resultsList: {
+						element: (list, data) => {
+							if (!data.results.length) {
+								const message = document.createElement("div");
+								message.setAttribute("class", "no_result");
+								message.innerHTML = `<span>Found No Results for "${data.query}"</span>`;
+								list.prepend(message);
+							}
+						},
+						noResults: true,
+					},
+					events: {
+						input: {
+							selection: (event) => {
+								const selection = event.detail.selection.value;
+								autoCompleteTo.input.value = selection;
+							}
+						}
+					}
+				}
+			);
+		</script>
+		<script>
+			var setTheme = localStorage.getItem('theme');
+			console.log('theme:', setTheme);
+			var element = document.body;
+			var def = document.getElementById("def");
+			user(setTheme);
+
+			function user(info) {
+				if (info == "on") {
+					element.classList.toggle("dark-mode");
+					def.checked = true;
+				}
+				else {
+					def.checked = false;
+				}
+			}
+			function darktheme() {
+				element.classList.toggle("dark-mode");
+				var val = localStorage.getItem('theme');
+				if (val == "on") {
+					localStorage.setItem('theme', "off");
+				}
+				else {
+					localStorage.setItem('theme', "on");
+				}
+				console.log('theme:', val);
+			}
+		</script>
+		<script src='https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.5.0/dist/svg-pan-zoom.min.js'></script>
+		<script>
+			window.onload = function () {
+				window.station = svgPanZoom('#stnSvg', {
+					zoomEnabled: true,
+					dblClickZoomEnabled: false
+					, mouseWheelZoomEnabled: true,
+					preventMouseEventsDefault: true,
+					zoomScaleSensitivity: 1,
+					controlIconsEnabled: true,
+					fit: true,
+					center: true,
+				
+				});
+			}</script>
+			<div class="instructions">
+				<p><strong>Tap</strong> to select stations<br>
+					<strong>Double Tap</strong> to reset selection
+				</p>
+			</div>
+		<div class="disclaimer">
+			<h2><strong>Mon - Fri</strong></h2>
+			<p>From <strong>9AM to 11AM</strong> and <strong>5pm to 7pm</strong><br>All Metro Trains will be
+				crowded!<br></p>
+		</div>
+		<div class="disclaimer">
+			<h2><strong>Sat - Sun</strong></h2>
+			<p>From <strong>8AM to 12AM</strong> and <strong>4pm to 7pm</strong><br>All Metro Trains will be
+				crowded!<br></p>
+		</div>
+	</div>
+</body>
+
+</html>

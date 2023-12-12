@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MoveSG</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}"> 
+</head>
+<body>
+	<style>
+		* {
+	margin: 0;
+	padding: 0;
+	}
+	body {
+		font-family: 'Poppins', sans-serif;
+	}
+	.wrapper {
+		width: 80%;
+		margin: auto;
+		-webkit-tap-highlight-color: transparent;
+	}
+	header {
+		background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(https://c0.wallpaperflare.com/preview/1019/232/988/singapore-lrt-mrt-train.jpg);
+		height: 100vh;
+		-webkit-background-size: cover;
+		background-size: cover;
+		background-position: center center;
+		position: relative;
+		-webkit-tap-highlight-color: transparent;
+	}
+	.nav-area {
+		float: right;
+		list-style: none;
+		margin-top: 30px;
+		-webkit-tap-highlight-color: transparent;
+	}
+	.nav-area li {
+		display: inline-block;
+	}
+	.nav-area li a {
+		color: #fff;
+		text-decoration: none;
+		padding: 5px 20px;
+		font-family: poppins;
+		font-size: 16px;
+		text-transform: uppercase;
+	}
+	.nav-area li a:hover {
+		background: #fff;
+		color: #333;
+	}
+	.logo {
+		float: left;
+	}
+	.logo img {
+		width: 100%;
+		padding: 15px 0;
+	}
+	.welcome-text {
+		position: absolute;
+		width: 600px;
+		height: 300px;
+		margin: 20% 30%;
+		text-align: center;
+		cursor: default;
+		-webkit-tap-highlight-color: transparent;
+	}
+	.welcome-text h6 {
+		text-align: center;
+		color: #fff;
+		text-transform: uppercase;
+
+	}
+	.welcome-text h6 span {
+		color: #00fecb;
+	}
+	.welcome-text a {
+		border: 1px solid #fff;
+		padding: 10px 25px;
+		text-decoration: none;
+		text-transform: uppercase;
+		font-size: 14px;
+		margin-top: 20px;
+		display: inline-block;
+		color: #fff;
+	}
+	.welcome-text a:hover {
+		background: #fff;
+		color: #333;
+	}
+
+	@media (max-width:500px) {
+		.wrapper {
+			width: 100%;
+		}
+		img {
+			width: 100%;
+		}
+		.nav-area {
+			padding-top: 0px;
+			position: absolute;
+			right: 40%;
+			text-align: center;
+			-webkit-tap-highlight-color: transparent;
+		}
+		.nav-area li a {
+			padding: 10px;
+			font-size: 13px;
+		}
+		.welcome-text {
+			width: 100%;
+			height: auto;
+			margin: 30% 0;
+			-webkit-tap-highlight-color: transparent;
+		}
+		.welcome-text h6 {
+			font-size: 14px;
+		}
+	}
+	.dark-mode {
+			background-color: black;
+			color: white;
+	}
+	</style>
+    <header>
+    <div class="wrapper">
+		<ul class="nav-area">
+		<li><a href="/">Home</a></li>
+		</ul>
+	</div>	
+		<div class="welcome-text">
+			<h6><span>MoveSG</span> was designed to provide a way for tourists<br>to get familiarised with shortest Metro Routes<br>Throughout <span>Singapore</span></h6>	
+			<br><br><h6>Created by: <span>Het Limbani</span></h6>
+			<br><br><br><br><br><br><br><br><br><br><h6><span>&copy; MoveSG 2021</span></h6>
+		</div>
+	</div>
+	</header>
+
+	</body>
+</html>
